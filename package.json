@@ -1,0 +1,35 @@
+{
+  "name": "repo-all-sync",
+  "version": "0.1.0",
+  "description": "Sync a git repository to GitHub, Gitee and CNB — mirror repos, source pushes and release assets.",
+  "type": "module",
+  "bin": {
+    "repo-all-sync": "bin/repo-all-sync.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "skill",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check bin/repo-all-sync.mjs && node --check src/cli.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "git",
+    "mirror",
+    "gitee",
+    "cnb",
+    "github",
+    "release",
+    "cli",
+    "sync"
+  ],
+  "license": "MIT",
+  "author": "Xynrin"
+}
