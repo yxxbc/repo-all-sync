@@ -144,6 +144,19 @@ dry-run-first and token-safety rules. See
 [skills/repo-all-sync/SKILL.md](skills/repo-all-sync/SKILL.md) for the workflow and
 [reference.md](skills/repo-all-sync/reference.md) for the full option matrix.
 
+### Updating
+
+The plugin is the zero-copy path. Update the marketplace catalog, then the plugin:
+
+```bash
+claude plugin marketplace update repo-all-sync
+claude plugin update repo-all-sync@repo-all-sync
+```
+
+Restart the session, or run `/reload-plugins`, to apply the new skill. The plugin is
+pinned to the `version` in `.claude-plugin/plugin.json`, so bump that version (and
+`package.json`; `npm test` enforces they match) before expecting an update.
+
 ### Plugin vs. personal skill
 
 Installing the plugin does **not** write to `~/.claude/skills/`. Claude Code keeps
@@ -152,37 +165,34 @@ plugin directory with a namespaced command:
 
 | Install | Command | Files |
 | --- | --- | --- |
-| Personal skill | `/repo-all-sync` | `~/.claude/skills/repo-all-sync/` |
 | This plugin | `/repo-all-sync:repo-all-sync` | `~/.claude/plugins/…/repo-all-sync/` |
+| Personal skill | `/repo-all-sync` | `~/.claude/skills/repo-all-sync/` |
 
-So an existing personal copy is never overwritten, and the two commands do not
-collide. They are separate copies, however: they drift, and if both are enabled both
-descriptions enter Claude's context, so automatic invocation may pick either.
-
-If you use this repository yourself, keep one source of truth instead of a copy:
-
-```bash
-npm link   # makes `repo-all-sync` available outside the plugin
-# move the old secret out of the skill directory first
-mv ~/.claude/skills/repo-all-sync/tokens.env ~/.config/repo-all-sync.env
-rm -rf ~/.claude/skills/repo-all-sync
-ln -s "$PWD/skills/repo-all-sync" ~/.claude/skills/repo-all-sync
-```
-
-The personal skill then always tracks the repository; do not install the plugin on
-the same machine unless you are testing it. For a one-off test, use
-`claude --plugin-dir .` in a separate session.
-
-If you prefer the npm-installed copy without a symlink:
+Do not enable both: the two descriptions enter Claude's context, automatic
+invocation may pick either, and the two copies drift. If you switch to the plugin,
+remove the personal copy:
 
 ```bash
-npm install -g repo-all-sync
 rm -rf ~/.claude/skills/repo-all-sync
-cp -R "$(npm root -g)/repo-all-sync/skills/repo-all-sync" ~/.claude/skills/repo-all-sync
 ```
 
-A copied skill does not follow `npm update -g`; re-run the `rm -rf` + `cp` pair after
-updating the CLI.
+If you deliberately want a personal skill instead of the plugin:
+
+- **Development / single source of truth** — symlink it to the repository:
+  ```bash
+  npm link
+  # move tokens out of the skill directory first; see Configure
+  rm -rf ~/.claude/skills/repo-all-sync
+  ln -s "$PWD/skills/repo-all-sync" ~/.claude/skills/repo-all-sync
+  ```
+- **npm-installed copy without a symlink** — copy it and re-copy after updates:
+  ```bash
+  npm install -g repo-all-sync
+  rm -rf ~/.claude/skills/repo-all-sync
+  cp -R "$(npm root -g)/repo-all-sync/skills/repo-all-sync" ~/.claude/skills/repo-all-sync
+  ```
+
+Neither personal-skill route follows `npm update -g` automatically.
 
 ## Local development
 
