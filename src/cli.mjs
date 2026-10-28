@@ -12,6 +12,7 @@ const VALUE_FLAGS = new Set([
   'cnb-group',
   'cnb-host',
   'github-remote',
+  'github-owner',
   'version',
   'tag',
   'assets',
@@ -67,6 +68,7 @@ Options:
   --gitee-owner <name>     Gitee owner (default: GITEE_OWNER)
   --cnb-group <name>       CNB group (default: CNB_GROUP)
   --github-remote <name>   GitHub remote (default: origin)
+  --github-owner <name>    create the GitHub repo under this user/org (default: gh account)
   --tag <tag>              release tag (default: v<version>)
   --dry-run                print actions without changing anything
   --github                 also create/upload the GitHub release

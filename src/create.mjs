@@ -49,12 +49,14 @@ function createGitHub(cfg, repo, root, dryRun) {
     return
   }
   if (dryRun) {
-    console.log(`github: would run gh repo create ${repo} --public --source=. --remote=${cfg.githubRemote}`)
+    const target = cfg.githubOwner ? `${cfg.githubOwner}/${repo}` : repo
+    console.log(`github: would run gh repo create ${target} --public --source=. --remote=${cfg.githubRemote}`)
     return
   }
+  const target = cfg.githubOwner ? `${cfg.githubOwner}/${repo}` : repo
   const result = spawnSync(
     'gh',
-    ['repo', 'create', repo, '--public', '--source=.', `--remote=${cfg.githubRemote}`],
+    ['repo', 'create', target, '--public', '--source=.', `--remote=${cfg.githubRemote}`],
     { cwd: root, encoding: 'utf8' },
   )
   if (result.status !== 0) {

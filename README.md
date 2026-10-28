@@ -71,11 +71,12 @@ Common options:
 | `--gitee-owner <name>` | Gitee owner; defaults to `GITEE_OWNER`, then the token user |
 | `--cnb-group <name>` | CNB group; defaults to `CNB_GROUP` |
 | `--github-remote <name>` | GitHub remote (default: `origin`) |
+| `--github-owner <name>` | create the GitHub repo under this user/org (default: the `gh` account) |
 | `--dry-run` | print actions without changing anything |
 | `--json` | reserved for machine-readable output |
 
-Environment overrides: `REPO_NAME`, `BRANCH`, `GITEE_HOST`, `GITEE_OWNER`, `GITEE_TOKEN`,
-`CNB_HOST`, `CNB_GROUP`, `CNB_TOKEN`, `CNB_API`, `RAS_CONFIG`.
+Environment overrides: `REPO_NAME`, `BRANCH`, `GITHUB_OWNER`, `GITEE_HOST`, `GITEE_OWNER`,
+`GITEE_TOKEN`, `CNB_HOST`, `CNB_GROUP`, `CNB_TOKEN`, `CNB_API`, `RAS_CONFIG`.
 
 ## How the mirrors work
 

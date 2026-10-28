@@ -22,6 +22,7 @@ export function loadConfig(flags = {}, env = process.env) {
   return {
     configFile: defaultConfigPath(),
     githubRemote: flags.githubRemote || env.GITHUB_REMOTE || file.github?.remote || 'origin',
+    githubOwner: flags.githubOwner || env.GITHUB_OWNER || file.github?.owner || '',
     giteeHost: flags.giteeHost || env.GITEE_HOST || file.gitee?.host || DEFAULT_GITEE_HOST,
     giteeOwner: flags.giteeOwner || env.GITEE_OWNER || file.gitee?.owner || '',
     giteeToken: env.GITEE_TOKEN || file.gitee?.token || '',
