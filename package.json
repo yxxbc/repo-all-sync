@@ -1,21 +1,23 @@
 {
   "name": "repo-all-sync",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Sync a git repository to GitHub, Gitee and CNB — mirror repos, source pushes and release assets.",
   "type": "module",
   "bin": {
     "repo-all-sync": "bin/repo-all-sync.mjs"
   },
   "files": [
+    ".claude-plugin",
     "bin",
     "src",
-    "skill",
+    "skills",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
     "test": "node --test",
-    "check": "node --check bin/repo-all-sync.mjs && node --check src/cli.mjs"
+    "check": "node --check bin/repo-all-sync.mjs && bash -n bin/repo-all-sync && node --check src/cli.mjs",
+    "plugin:validate": "claude plugin validate ."
   },
   "engines": {
     "node": ">=20"
@@ -31,5 +33,13 @@
     "sync"
   ],
   "license": "MIT",
-  "author": "Xynrin"
+  "author": "Xynrin",
+  "homepage": "https://github.com/yxxbc/repo-all-sync#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yxxbc/repo-all-sync.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yxxbc/repo-all-sync/issues"
+  }
 }

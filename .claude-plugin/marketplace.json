@@ -1,0 +1,24 @@
+{
+  "name": "repo-all-sync",
+  "description": "Claude Code plugin for syncing a Git repository to GitHub, Gitee and CNB.",
+  "owner": {
+    "name": "Xynrin"
+  },
+  "plugins": [
+    {
+      "name": "repo-all-sync",
+      "source": "./",
+      "description": "Create mirror repos, push source and publish release assets on GitHub, Gitee and CNB.",
+      "license": "MIT",
+      "keywords": [
+        "git",
+        "mirror",
+        "gitee",
+        "cnb",
+        "github",
+        "release",
+        "sync"
+      ]
+    }
+  ]
+}

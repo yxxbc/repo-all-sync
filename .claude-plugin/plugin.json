@@ -1,0 +1,21 @@
+{
+  "name": "repo-all-sync",
+  "displayName": "Repo All Sync",
+  "version": "0.2.1",
+  "description": "Sync a Git repository to GitHub, Gitee and CNB: create mirror repos, push source and publish release assets.",
+  "author": {
+    "name": "Xynrin"
+  },
+  "homepage": "https://github.com/yxxbc/repo-all-sync#readme",
+  "repository": "https://github.com/yxxbc/repo-all-sync",
+  "license": "MIT",
+  "keywords": [
+    "git",
+    "mirror",
+    "gitee",
+    "cnb",
+    "github",
+    "release",
+    "sync"
+  ]
+}

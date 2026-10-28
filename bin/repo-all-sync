@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Plugin entry: Claude Code puts this directory on PATH, so the command is
+# `repo-all-sync` (the npm bin of the same name points at repo-all-sync.mjs).
+set -euo pipefail
+exec node "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/repo-all-sync.mjs" "$@"
