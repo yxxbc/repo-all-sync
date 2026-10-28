@@ -6,11 +6,11 @@ import { requestJson } from './http.mjs'
 import { remoteExists } from './git.mjs'
 
 async function createGitee(cfg, repo, dryRun) {
-  if (!cfg.giteeToken) throw new Error('缺少 GITEE_TOKEN')
   if (dryRun) {
     console.log(`gitee: would create https://${cfg.giteeHost}/${cfg.giteeOwner || '<owner>'}/${repo}`)
     return
   }
+  if (!cfg.giteeToken) throw new Error('缺少 GITEE_TOKEN')
 
   let me = null
   try {
@@ -66,11 +66,11 @@ function createGitHub(cfg, repo, root, dryRun) {
 }
 
 function createCnb(cfg, repo, dryRun) {
-  if (!cfg.cnbGroup) throw new Error('缺少 CNB_GROUP')
   if (dryRun) {
-    console.log(`cnb: would create https://${cfg.cnbHost}/${cfg.cnbGroup}/${repo}`)
+    console.log(`cnb: would create https://${cfg.cnbHost}/${cfg.cnbGroup || '<group>'}/${repo}`)
     return
   }
+  if (!cfg.cnbGroup) throw new Error('缺少 CNB_GROUP')
   if (!cfg.cnbToken) throw new Error('缺少 CNB_TOKEN')
 
   const probe = spawnSync('cnb', ['--version'], { encoding: 'utf8' })
